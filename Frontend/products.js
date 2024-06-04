@@ -7,7 +7,7 @@ const products = [
     brand: 'Apple',
     category: 'Smartphones',
     price: 999,
-    countInstock: 50,
+    countInstock: 5,
     rating: 4.5,
     numReviews: 100
   },
@@ -31,7 +31,7 @@ const products = [
     brand: 'Google',
     category: 'Smartphones',
     price: 799,
-    countInstock: 40,
+    countInstock: 4,
     rating: 4.7,
     numReviews: 90
   },
@@ -43,7 +43,7 @@ const products = [
     brand: 'OnePlus',
     category: 'Smartphones',
     price: 899,
-    countInstock: 55,
+    countInstock: 10,
     rating: 4.6,
     numReviews: 110
   },
@@ -55,7 +55,7 @@ const products = [
     brand: 'Xiaomi',
     category: 'Smartphones',
     price: 699,
-    countInstock: 70,
+    countInstock: 8,
     rating: 4.4,
     numReviews: 95
   },
@@ -67,7 +67,7 @@ const products = [
     brand: 'Sony',
     category: 'Smartphones',
     price: 1099,
-    countInstock: 30,
+    countInstock: 2,
     rating: 4.8,
     numReviews: 85
   },
@@ -79,7 +79,7 @@ const products = [
     brand: 'Huawei',
     category: 'Smartphones',
     price: 899,
-    countInstock: 45,
+    countInstock: 4,
     rating: 4.3,
     numReviews: 80
   },
@@ -91,7 +91,7 @@ const products = [
     brand: 'LG',
     category: 'Smartphones',
     price: 699,
-    countInstock: 50,
+    countInstock: 5,
     rating: 4.2,
     numReviews: 75
   },
@@ -103,7 +103,7 @@ const products = [
     brand: 'Motorola',
     category: 'Smartphones',
     price: 799,
-    countInstock: 35,
+    countInstock: 9,
     rating: 4.5,
     numReviews: 70
   },
@@ -115,7 +115,7 @@ const products = [
     brand: 'Asus',
     category: 'Smartphones',
     price: 999,
-    countInstock: 25,
+    countInstock: 10,
     rating: 4.9,
     numReviews: 65
   },
@@ -127,7 +127,7 @@ const products = [
     brand: 'Oppo',
     category: 'Smartphones',
     price: 1099,
-    countInstock: 20,
+    countInstock: 6,
     rating: 4.7,
     numReviews: 60
   },

@@ -8,17 +8,7 @@ import { Spinner } from '@material-tailwind/react'
 
 export default function HomeScreen(){
     const { data: products, isLoading, isError} = useGetProductsQuery()
-    // const [products, setProducts] = useState([])
-    // useEffect(()=>{
-    //     const fetchData = async ()=>{
-    //         const {data} = await axios.get('http://localhost:8000/products')
-    //         // console.log(data)
-    //         setProducts(data)
-            
-    //     }
-    //     fetchData()
 
-    // }, [])
     return(
         <>  
         {isLoading ? (<Spinner className='mt-20'/>) : 
