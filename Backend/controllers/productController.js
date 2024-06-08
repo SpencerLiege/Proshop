@@ -1,19 +1,23 @@
+// product controller for the product route
+
 import asyncHandler from "../middleware/asyncHandler.js"
 import Product from "../models/productModel.js"
 
-// @des  Fetch all products
+// @description  Fetch all products
 // @route  GET /products
-//  @access  Public
+// @access  Public
 const getProducts = asyncHandler(async (req, res)=>{
+    // to find all products
     const products = await Product.find({})
     res.json(products)
 })
 
 
-// @des  Fetch a product
+// @description  Fetch a product
 // @route  GET /products/:id
-//  @access  Public
+// @access  Public
 const getProductById = asyncHandler(async(req, res)=>{
+    // to find a product by ID
     const product = await Product.findById(req.params.id)
     if(product){
        return res.json(product)
@@ -25,3 +29,4 @@ const getProductById = asyncHandler(async(req, res)=>{
 })
 
 export { getProductById, getProducts}
+

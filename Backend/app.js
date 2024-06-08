@@ -3,6 +3,7 @@ import connectDB from './config/db.js'
 import dotenv from 'dotenv'
 dotenv.config()
 import productRouter from './routes/productRouter.js'
+import userRouter from './routes/userRouter.js'
 import cors from 'cors'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 const port = process.env.PORT || 5000
@@ -12,9 +13,11 @@ const app = express()
 
 app.use(cors())
 
+// routes
+app.use('/products', productRouter)
+app.use('/users', userRouter)
 
-app.use('/products', productRouter )
-
+// middleware
 app.use(errorHandler)
 app.use(notFound)
 
