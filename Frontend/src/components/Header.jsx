@@ -21,7 +21,7 @@ export default function Header(){
                     }
                 </Link>
                 
-                <Link to={`/register`} className='flex items-center p-2 gap-1  hover:bg-slate-200 rounded-full'><span>Sign up</span> <BsPerson /> </Link>
+                <Link to={`/login`} className='flex items-center p-2 gap-1  hover:bg-slate-200 rounded-full'><span>Sign In</span> <BsPerson /> </Link>
             </div>
         </header>
         </>

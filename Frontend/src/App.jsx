@@ -4,7 +4,7 @@ import Footer from "./components/Footer"
 import HomeScreen from "./screens/HomeScreen"
 import ProductScreen from "./screens/productScreen"
 import CartScreen from './screens/cartScreen'
-// import { Rating } from "@material-tailwind/react"
+import LoginScreen from './screens/LoginScreen'
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
           <Route path='/products' element={<HomeScreen/> } />
           <Route path='/products/:id' element={<ProductScreen/> }/>
           <Route path='/cart' element={<CartScreen/>} />
+          <Route path='/login' element={<LoginScreen/> }/>
           
         </Routes>     
       </main>
