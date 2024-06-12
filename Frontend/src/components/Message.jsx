@@ -1,39 +1,16 @@
 
-
-// export default function Message() {
-//   return (
-//     <>
-//         <div className="p-10">
-//             Yes
-//         </div>
-//     </>
-//   )
-// }
-
-
-// import React from 'react';
 import PropTypes from 'prop-types';
 
-const Message = ({ type, children }) => {
-  let messageClass;
+const Message = ({ type = 'info', children }) => {
+  const messageClasses = {
+    error: 'bg-red-100 border border-red-400 text-red-700',
+    success: 'bg-green-100 border border-green-400 text-green-700',
+    info: 'bg-blue-100 border border-blue-400 text-blue-700',
+    warning: 'bg-yellow-100 border border-yellow-400 text-yellow-700',
+    default: 'bg-gray-100 border border-gray-400 text-gray-700',
+  };
 
-  switch (type) {
-    case 'error':
-      messageClass = 'bg-red-100 text-base border border-red-400 text-red-700';
-      break;
-    case 'success':
-      messageClass = 'bg-green-100 text-base border border-green-400 text-green-700';
-      break;
-    case 'info':
-      messageClass = 'bg-blue-100 text-base border border-blue-400 text-blue-700';
-      break;
-    case 'warning':
-      messageClass = 'bg-yellow-100 text-base border border-yellow-400 text-yellow-700';
-      break;
-    default:
-      messageClass = 'bg-gray-100 text-base border border-gray-400 text-gray-700';
-      break;
-  }
+  const messageClass = messageClasses[type] || messageClasses.default;
 
   return (
     <div className={`p-4 mb-4 rounded ${messageClass}`}>
@@ -43,12 +20,8 @@ const Message = ({ type, children }) => {
 };
 
 Message.propTypes = {
-  type: PropTypes.string,
+  type: PropTypes.oneOf(['error', 'success', 'info', 'warning']),
   children: PropTypes.node.isRequired,
-};
-
-Message.defaultProps = {
-  type: 'info',
 };
 
 export default Message;

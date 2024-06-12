@@ -35,6 +35,7 @@ export default function LoginScreen() {
             const res = await login({ email, password }).unwrap()
             dispatch(setCredentials({ ...res }))
             navigate(redirect)
+            toast.success('Login success')
         } catch (error) {
             toast.error(error?.data?.message || error.error)
         }
@@ -57,7 +58,7 @@ export default function LoginScreen() {
                 <div>
                     <button disabled={isLoading} className='bg-sky-500 font-semibold rounded-full px-3 text-white py-1 hover:bg-sky-600 transition ease-in-out hover:scale-105 duration-500'>Login</button>
                 </div>
-                { isLoading && <Spinner />}
+                { isLoading && <Spinner color='blue-gray' />}
            </form>
 
            <div className='flex text-slate-500 mt-8 gap-x-20 '>
