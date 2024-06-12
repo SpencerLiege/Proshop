@@ -50,21 +50,21 @@ export default function RegisterScreen() {
     <div className="mt-20 flex justify-center">
         <div className=" border-2 border-slate-100 shadow-md px-20 py-12 ">
            <h1 className='text-2xl text-slate-700 font-bold mb-6'>Sign Up</h1>
-           <form onSubmit={submitHandler} className='text-slate-900 flex flex-col gap-y-4 ' action="">
+           <form onSubmit={submitHandler} className='text-slate-900 flex flex-col gap-y-4 ' action="" id='register'>
                 <div className="flex flex-col">
-                        <label className='font-medium text-slate-500 text-lg' htmlFor="name">Name</label>
-                        <input onChange={(e)=> setName(e.target.value)} className='text-md font-medium text-slate-500 w-80 p-1 border-2 shadow-md rounded-sm border-slate-200 focus:outline-none ' type="text" placeholder='Enter Your Name' />
+                        <label className='font-medium text-slate-500 text-lg' htmlFor="name" name='name' >Name</label>
+                        <input onChange={(e)=> setName(e.target.value)} className='text-md font-medium text-slate-500 w-80 p-1 border-2 shadow-md rounded-sm border-slate-200 focus:outline-none ' type="text" id='name' placeholder='Enter Your Name' />
                     </div>
                     <div className="flex flex-col">
                         <label className='font-medium text-slate-500 text-lg' htmlFor="email">Email</label>
-                        <input onChange={(e)=> setEmail(e.target.value)} className='text-md font-medium text-slate-500 w-80 p-1 border-2 shadow-md rounded-sm border-slate-200 focus:outline-none ' type="text" placeholder='Enter Your Email address' />
+                        <input onChange={(e)=> setEmail(e.target.value)} className='text-md font-medium text-slate-500 w-80 p-1 border-2 shadow-md rounded-sm border-slate-200 focus:outline-none ' type="text" id='email' placeholder='Enter Your Email address' />
                     </div>
                     <div className="flex flex-col"> 
-                        <label className='font-medium text-slate-500 text-lg' htmlFor="password">Password</label>
+                        <label className='font-medium text-slate-500 text-lg' htmlFor="password" name='password' >Password</label>
                         <input onChange={(e)=> setPassword(e.target.value)} className='text-md font-medium text-slate-500 w-80 p-1 border-2 shadow-md rounded-sm border-slate-200 focus:outline-none' type="password" name="password" id="password" placeholder='Input a password' />
                     </div>
                     <div className="flex flex-col"> 
-                        <label className='font-medium text-slate-500 text-lg' htmlFor="password">Confirm Password</label>
+                        <label className='font-medium text-slate-500 text-lg' htmlFor="password" name='confrim-password' >Confirm Password</label>
                         <input onChange={(e)=> setConfirmPassword(e.target.value)} className='text-md font-medium text-slate-500 w-80 p-1 border-2 shadow-md rounded-sm border-slate-200 focus:outline-none' type="password" name="confirm-password" id="confirm-password" placeholder='Confirm password' />
                     </div>
                     <div>
