@@ -48,11 +48,11 @@ export default function LoginScreen() {
            <form onSubmit={submitHandler} className='text-slate-900 flex flex-col gap-y-4 ' action="">
                 <div className="flex flex-col">
                     <label className='font-medium text-slate-500 text-lg' htmlFor="email">Email</label>
-                    <input onChange={(e)=> setEmail(e.target.value)} className='text-md font-medium text-slate-500 w-80 p-1 border-2 shadow-md rounded-sm border-slate-200 focus:outline-none focus:bg-sky-100 ' type="text" />
+                    <input onChange={(e)=> setEmail(e.target.value)} className='text-md font-medium text-slate-500 w-80 p-1 border-2 shadow-md rounded-sm border-slate-200 focus:outline-none focus:bg-sky-100 ' type="text" placeholder='Enter Your Email' />
                 </div>
                 <div className="flex flex-col"> 
                     <label className='font-medium text-slate-500 text-lg' htmlFor="password">Password</label>
-                    <input onChange={(e)=> setPassword(e.target.value)} className='text-md font-medium text-slate-500 w-80 p-1 border-2 shadow-md rounded-sm border-slate-200 focus:outline-none focus:bg-sky-100' type="password" name="password" id="" />
+                    <input onChange={(e)=> setPassword(e.target.value)} className='text-md font-medium text-slate-500 w-80 p-1 border-2 shadow-md rounded-sm border-slate-200 focus:outline-none focus:bg-sky-100' type="password" name="password" id="" placeholder='Enter Your Password' />
                 </div>
                 <div>
                     <button disabled={isLoading} className='bg-sky-500 font-semibold rounded-full px-3 text-white py-1 hover:bg-sky-600 transition ease-in-out hover:scale-105 duration-500'>Login</button>

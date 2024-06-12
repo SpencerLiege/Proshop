@@ -1,4 +1,5 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import panda from '../assets/panda.jpeg'
 import {Link} from 'react-router-dom'
@@ -6,11 +7,18 @@ import { IoCartOutline } from "react-icons/io5";
 import { BsPerson } from "react-icons/bs";
 import { IoIosLogOut } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
+import { useLogoutMutation } from '../slices/userApiSlice';
+import { logout } from '../slices/authSlice';
 
 export default function Header(){
 
     const { cartItems} = useSelector( (state) => state.cart)
     const { userInfo} = useSelector( (state) => state.auth)
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const [ logoutApi ] = useLogoutMutation()
 
     const [isToggle, setIstoggle] = useState(false)
 
@@ -18,8 +26,14 @@ export default function Header(){
         setIstoggle(!isToggle)
     }
 
-    const logoutHandler = ()=> {
-        console.log('logout')
+    const logoutHandler = async ()=> {
+        try {
+            await logoutApi().unwrap()
+            dispatch(logout())
+            navigate('/login')
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return(
