@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useGetProductDetailsQuery } from "../slices/productsApiSlice";
 import StarRating from "../components/starRating";
-import { Spinner } from "@material-tailwind/react";
+import Loader from '../components/Loader.jsx'
 import { addToCart } from "../slices/cartSlice";
 // import axios from "axios";
 
@@ -35,7 +35,7 @@ export default function ProductScreen() {
             <TbArrowBack className="w-5 h-5" />
             Return
          </Link>
-         { isLoading? (<Spinner className="mt-40 ml-40"/>) : 
+         { isLoading? (<Loader type="product"/>) : 
          isError? (<div>{isError?.data?.message || isError.error}</div>) :
           (
             <section className="mt-4  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 p-4">

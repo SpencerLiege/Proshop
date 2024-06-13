@@ -3,11 +3,16 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import PrivateRoutes from './components/PrivateRoutes'
 import HomeScreen from "./screens/HomeScreen"
 import ProductScreen from "./screens/productScreen"
 import CartScreen from './screens/cartScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
+import ShippingScreen from './screens/ShippingScreen'
+import PaymentScreen from './screens/PaymentScreen'
+import PlaceOrderScreen from './screens/PlaceOrderScreen'
+
 
 function App() {
   return (
@@ -20,7 +25,14 @@ function App() {
           <Route path='/cart' element={<CartScreen/>} />
           <Route path='/login' element={<LoginScreen/> }/>
           <Route path='/register' element={<RegisterScreen/> }/>
-          
+
+          {/* private routes */}
+          <Route path='' element={<PrivateRoutes />}>
+            <Route path='/shipping' element={<ShippingScreen />} />
+            <Route path='/payment' element={<PaymentScreen />} />
+            <Route path='/placeorder' element={<PlaceOrderScreen />} />
+          </Route>
+
         </Routes>     
       </main>
       <Footer/>

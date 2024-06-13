@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRegisterMutation } from "../slices/userApiSlice"
 import { setCredentials } from "../slices/authSlice"
 import { toast } from "react-toastify"
-import { Spinner } from '@material-tailwind/react'
+import Loader from '../components/Loader.jsx'
 
 export default function RegisterScreen() {
     const [password, setPassword] = useState('')
@@ -71,7 +71,7 @@ export default function RegisterScreen() {
                     <div>
                         <button disabled={isLoading} className='bg-sky-500 font-semibold rounded-full px-3 text-white py-1 hover:bg-sky-600 transition ease-in-out hover:scale-105 duration-500'>Submit</button>
                     </div>
-                    { isLoading && <Spinner />}
+                    { isLoading && <Loader type='login' />}
            </form>
 
            <div className='flex text-slate-500 mt-4 gap-x-20 '>

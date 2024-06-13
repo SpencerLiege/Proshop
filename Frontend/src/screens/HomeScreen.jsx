@@ -1,17 +1,16 @@
 /* eslint-disable react/jsx-key */
-// import { useState, useEffect } from 'react'
 import {Link} from 'react-router-dom'
 import Product from "../components/productList"
 import { useGetProductsQuery } from '../slices/productsApiSlice.js'
-import { Spinner } from '@material-tailwind/react'
-// import axios from 'axios'
+import Loader from '../components/Loader.jsx'
+
 
 export default function HomeScreen(){
     const { data: products, isLoading, isError} = useGetProductsQuery()
 
     return(
         <>  
-        {isLoading ? (<Spinner className='mt-20'/>) : 
+        {isLoading ? (<Loader type='product' />) : 
         isError ? (<div>{isError?.data?.message || isError.error}</div>) :
          (<div>
             <h1 className="pt-20 pb-3 ml-8 font-bold text-3xl text-slate-700 uppercase">Latest Products</h1>      

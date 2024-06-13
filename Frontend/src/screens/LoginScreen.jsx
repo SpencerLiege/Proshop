@@ -1,15 +1,18 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { Spinner } from '@material-tailwind/react'
 import { useLoginMutation } from '../slices/userApiSlice'
 import { setCredentials } from '../slices/authSlice'
 import { toast } from 'react-toastify'
+import Loader from '../components/Loader.jsx'
 
 
 export default function LoginScreen() {
     const [password, setPassword] = useState('')
     const [email, setEmail] = useState('')
+
+    const noEntry = email==='' || password===''
+    
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
@@ -56,14 +59,14 @@ export default function LoginScreen() {
                     <input onChange={(e)=> setPassword(e.target.value)} className='text-md font-medium text-slate-500 w-80 p-1 border-2 shadow-md rounded-sm border-slate-200 focus:outline-none focus:bg-sky-100' type="password" name="password" id="password" placeholder='Enter Your Password' />
                 </div>
                 <div>
-                    <button disabled={isLoading} className='bg-sky-500 font-semibold rounded-full px-3 text-white py-1 hover:bg-sky-600 transition ease-in-out hover:scale-105 duration-500'>Login</button>
+                    <button disabled={ isLoading || noEntry } className={`${ noEntry ? 'cursor-not-allowed opacity-65 hover:scale-100' : 'cursor-pointer'}  bg-sky-500 font-semibold rounded-full px-3 text-white py-1 hover:bg-sky-600 transition ease-in-out hover:scale-105 duration-500`}>Login</button>
                 </div>
-                { isLoading && <Spinner color='blue-gray' />}
+                { isLoading && <Loader type='login' />}
            </form>
 
            <div className='flex text-slate-500 mt-8 gap-x-20 '>
                     <span className=''>Do not have an account?</span>
-                    <Link to={redirect ? `/register?redirect=${redirect}` : `/register`} className='text-sky-600 hover:text-sky-800 underline underline-offset-4 font-bold hover:font-bold'>Sign Up </Link>
+                    <Link to={redirect ? `/register?redirect=${redirect}` : '/register'} className='text-sky-600 hover:text-sky-800 underline underline-offset-4 font-bold hover:font-bold'>Sign Up </Link>
             </div>  
         </div>
 
