@@ -19,7 +19,10 @@ app.use(express.urlencoded({ extended: true }))
 // cookie parser
 app.use(cookieParser())
 
-app.use(cors())
+app.use(cors({
+  origin: 'http://your-frontend-domain.com',
+  credentials: true, // This allows the browser to include cookies in the requests
+}));
 
 // routes
 app.use('/products', productRouter)
