@@ -20,7 +20,10 @@ app.use(express.urlencoded({ extended: true }))
 // cookie parser
 app.use(cookieParser())
 
-app.use(cors())
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true, // This allows the browser to include cookies in the requests
+}));
 
 // routes
 app.use('/products', productRouter)
