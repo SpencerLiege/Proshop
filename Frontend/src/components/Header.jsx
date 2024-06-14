@@ -9,7 +9,7 @@ import { IoIosLogOut } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import { useLogoutMutation } from '../slices/userApiSlice';
 import { logout } from '../slices/authSlice';
-import { resetCart } from '../slices/cartSlice';
+import { destroyCart } from '../slices/cartSlice';
 import { toast } from 'react-toastify';
 
 export default function Header(){
@@ -32,7 +32,8 @@ export default function Header(){
         try {
             await logoutApi().unwrap()
             dispatch(logout())
-            dispatch(resetCart())
+            dispatch(destroyCart())
+            
             navigate('/login')
             toast.success('Logout success')
         } catch (error) {

@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 import productRouter from './routes/productRouter.js'
 import userRouter from './routes/userRouter.js'
+import orderRouter from './routes/orderRouter.js'
 import cors from 'cors'
 import cookieParser from 'cookie-parser'
 import { notFound, errorHandler } from './middleware/errorMiddleware.js'
@@ -24,6 +25,7 @@ app.use(cors())
 // routes
 app.use('/products', productRouter)
 app.use('/users', userRouter)
+app.use('/orders', orderRouter)
 
 // middleware
 app.use(errorHandler)
@@ -38,17 +40,3 @@ app.listen(port, ()=>{
 
 
 
-// const express = require('express')
-// const app = express()
-// const port = 5000
-
-
-// app.get('/', (req, res)=>{
-//     // res.send('First app')
-//     res.send('Yes welcome')
-// })
-
-
-// app.listen(port, ()=>{
-//     console.log('Server is running')
-// })

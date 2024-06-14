@@ -6,6 +6,7 @@ export default function Loader({ type='default' }) {
     const loaders = {
         default: 'animate-spin',
         login: 'animate-spin w-6 h-6 text-sky-600',
+        order: 'animate-spin w-6 h-6 text-lime-600',
         product: 'animate-spin w-12 h-12 text-orange-600 mt-72'
     }
 
@@ -19,7 +20,7 @@ export default function Loader({ type='default' }) {
 }
 
 Loader.propTypes = {
-    type: PropTypes.oneOf(['default', 'login', 'product'])
+    type: PropTypes.oneOf(['default', 'login', 'product', 'order'])
 }
 
 

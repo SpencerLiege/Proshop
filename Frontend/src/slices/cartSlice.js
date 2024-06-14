@@ -26,7 +26,7 @@ const cartSlice = createSlice({
         },
         destroyCart: (state) => {
             state.cartItems = []
-            return updateCart()
+            return updateCart(state)
         },
         saveShippingAddress: (state, action)=> {
             state.shippingAddress = action.payload
@@ -35,10 +35,6 @@ const cartSlice = createSlice({
         savePaymentMethod: (state, action)=>{
             state.paymentMethod = action.payload
             return updateCart(state)
-        },
-        resetCart: (state) => {
-            state = initialState
-            return state
         }
     }
 })
