@@ -11,6 +11,7 @@ import Loader from '../components/Loader'
 
 export default function PlaceOrderScreen() {
   const cart = useSelector((state)=> state.cart)
+  // const auth = useSelector((state)=> state.auth)
 
   const [createOrder, { isLoading, error}] = useCreateOrderMutation()
 
@@ -22,15 +23,15 @@ export default function PlaceOrderScreen() {
       navigate('/shipping')
     }
     else if(!cart.paymentMethod){
-      navigate('/payment')
+      navigate('/payment')  
     }
   }, [cart.shippingAddress.address, cart.paymentMethod, navigate])
 
-  const placeOrderHandler = async (e)=> {
-    e.preventDefault()
+  const placeOrderHandler = async ()=> {
+    console.log(cart)
     try {
       const res = await createOrder({
-        orderItems: cart.orderItems,
+        orderItems: cart.cartItems,
         shippingAddress: cart.shippingAddress,
         paymentMethod: cart.paymentMethod,
         itemsPrice: cart.itemsPrice,
@@ -38,13 +39,14 @@ export default function PlaceOrderScreen() {
         taxPrice: cart.taxPrice,
         totalPrice: cart.totalPrice,
       }).unwrap()
-      console.log(res)
+
+      console.log(res)  
       dispatch(destroyCart())
       navigate(`/orders/${res._id}`)
       
       toast.info('Order placed successfully, proceed to view order')
-    } catch (error) {
-      toast.error(error)
+    } catch (err) {
+      toast.error(err)
     }
     console.log('submitted')
   }
@@ -96,10 +98,10 @@ export default function PlaceOrderScreen() {
               <div className="text-slate-600 text-sm border-b-2 p-2 flex justify-between"><span>Shipping:</span> <span>${cart.shippingPrice}</span> </div>
               <div className="text-slate-600 text-sm border-b-2 p-2 flex justify-between"><span>Tax:</span> <span>${cart.taxPrice}</span> </div>
               <div className="text-slate-600 text-sm border-b-2 p-2 flex justify-between"><span>Total:</span> <span>${cart.totalPrice}</span> </div>
-              <div className="text-slate-600 text-sm border-b-2 p-2 flex justify-between">{error && (<Message type="error">{error.data.message}</Message>)}</div>
+              <div className="text-slate-600 text-sm border-b-2 p-2 flex justify-between">{error && (<Message type="error">{error?.data?.message}</Message>)}</div>
               <div className=" p-2">
                 <button disabled={cart.cartItems === 0} onClick={placeOrderHandler} className="bg-sky-500 font-semibold rounded-full px-3 text-white py-1 hover:bg-sky-600 transition ease-in-out hover:scale-105 duration-500">Place Order</button>
-                {isLoading && (<Loader />)}
+                {isLoading && (<Loader type='order' />)}
               </div>
           </article>
         </section>

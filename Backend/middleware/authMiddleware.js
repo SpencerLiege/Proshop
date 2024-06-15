@@ -6,10 +6,10 @@ import User from '../models/userModel.js'
 // protect routes
 
 const protect = asyncHandler(async (req, res, next)=> {
-    let token
+    // let token
 
     // read the JWT from the HTTp-only cookie
-    token = req.cookies.jwt
+    let token = req.cookies.jwt
 
     if(token){
         try{
@@ -43,4 +43,4 @@ const admin = (req, res, next) =>{
     }
 }
 
-export { protect, admin }
+export { protect, admin}

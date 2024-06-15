@@ -8,17 +8,33 @@ import generateToken from "../utils/generateToken.js"
 const addOrderItems = asyncHandler(async (req, res)=>{
     const { orderItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body
 
+    // console.log(orderItems)
+    // console.log(req.body)
     if(orderItems && orderItems.length === 0){
         res.status(400)
         throw new Error(' No order available')
     }
     else{
-        const order = new Order({
-            orderItems: orderItems.map((x)=> ({
-                ...x, 
-                product: x._id,
+        const validatedOrderItems = orderItems.map((item) => {
+            
+            
+            if (!item) {
+                throw new Error(`Order item at index ${index} is undefined`);
+            }
+
+            if (!item._id) {
+                throw new Error(`Order item at index ${index} is missing _id property`);
+            }
+            return {
+                ...item,
+                product: item._id,
                 _id: undefined
-            })),
+               
+            };
+        });
+
+        const order = new Order({
+            orderItems: validatedOrderItems,
             user: req.user._id,
             shippingAddress,
             paymentMethod,
