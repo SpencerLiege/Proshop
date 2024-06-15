@@ -6,7 +6,9 @@ import generateToken from "../utils/generateToken.js"
 // @route  POST /orders
 // @access  Private
 const addOrderItems = asyncHandler(async (req, res)=>{
-    const { orderItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body
+    
+    const { user, orderItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body
+
 
     // console.log(orderItems)
     // console.log(req.body)
@@ -15,27 +17,13 @@ const addOrderItems = asyncHandler(async (req, res)=>{
         throw new Error(' No order available')
     }
     else{
-        const validatedOrderItems = orderItems.map((item) => {
-            
-            
-            if (!item) {
-                throw new Error(`Order item at index ${index} is undefined`);
-            }
-
-            if (!item._id) {
-                throw new Error(`Order item at index ${index} is missing _id property`);
-            }
-            return {
+        const order = new Order({
+            orderItems: orderItems.map((item)=> ({
                 ...item,
                 product: item._id,
-                _id: undefined
-               
-            };
-        });
-
-        const order = new Order({
-            orderItems: validatedOrderItems,
-            user: req.user._id,
+                
+            })),
+            user,
             shippingAddress,
             paymentMethod,
             itemsPrice,
@@ -43,7 +31,7 @@ const addOrderItems = asyncHandler(async (req, res)=>{
             shippingPrice,
             totalPrice,
         })
-
+        
         const newOrder = await order.save()
         res.status(201).json(newOrder)
     }

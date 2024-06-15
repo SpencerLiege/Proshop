@@ -11,6 +11,7 @@ import Loader from '../components/Loader'
 
 export default function PlaceOrderScreen() {
   const cart = useSelector((state)=> state.cart)
+  const { userInfo } = useSelector((state)=> state.auth)
   // const auth = useSelector((state)=> state.auth)
 
   const [createOrder, { isLoading, error}] = useCreateOrderMutation()
@@ -28,9 +29,10 @@ export default function PlaceOrderScreen() {
   }, [cart.shippingAddress.address, cart.paymentMethod, navigate])
 
   const placeOrderHandler = async ()=> {
-    console.log(cart)
+    
     try {
       const res = await createOrder({
+        user: userInfo._id,
         orderItems: cart.cartItems,
         shippingAddress: cart.shippingAddress,
         paymentMethod: cart.paymentMethod,
