@@ -38,8 +38,10 @@ export default function PlaceOrderScreen() {
         taxPrice: cart.taxPrice,
         totalPrice: cart.totalPrice,
       }).unwrap()
+      console.log(res)
       dispatch(destroyCart())
       navigate(`/orders/${res._id}`)
+      
       toast.info('Order placed successfully, proceed to view order')
     } catch (error) {
       toast.error(error)
