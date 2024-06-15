@@ -64,7 +64,7 @@ export default function Header(){
                             {
                                 isToggle && (
                                     <div className='flex flex-col items-center absolute top-10 right-12 mt-2 bg-slate-100 rounded-md'>
-                                        <Link className='flex items-center gap-2 hover:bg-slate-200 self-start p-1 w-full text-sm font-medium' onClick={()=> setIstoggle(false)}>
+                                        <Link to='/profile' className='flex items-center gap-2 hover:bg-slate-200 self-start p-1 w-full text-sm font-medium' onClick={()=> setIstoggle(false)}>
                                             Profile <CgProfile />
                                         </Link>
                                         <button className='flex items-center gap-2 hover:bg-slate-200 self-start p-1 w-full text-sm font-medium' onClick={()=> {

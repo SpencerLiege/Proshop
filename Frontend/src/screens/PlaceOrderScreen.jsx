@@ -12,6 +12,7 @@ import Loader from '../components/Loader'
 export default function PlaceOrderScreen() {
   const cart = useSelector((state)=> state.cart)
   const { userInfo } = useSelector((state)=> state.auth)
+
   // const auth = useSelector((state)=> state.auth)
 
   const [createOrder, { isLoading, error}] = useCreateOrderMutation()
@@ -29,28 +30,29 @@ export default function PlaceOrderScreen() {
   }, [cart.shippingAddress.address, cart.paymentMethod, navigate])
 
   const placeOrderHandler = async ()=> {
-    
-    try {
-      const res = await createOrder({
-        user: userInfo._id,
-        orderItems: cart.cartItems,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod,
-        itemsPrice: cart.itemsPrice,
-        shippingPrice: cart.shippingPrice,
-        taxPrice: cart.taxPrice,
-        totalPrice: cart.totalPrice,
-      }).unwrap()
+      try {
 
-      console.log(res)  
-      dispatch(destroyCart())
-      navigate(`/orders/${res._id}`)
-      
-      toast.info('Order placed successfully, proceed to view order')
-    } catch (err) {
-      toast.error(err)
-    }
-    console.log('submitted')
+        const res = await createOrder({
+          user: userInfo._id,
+          orderItems: cart.cartItems,
+          shippingAddress: cart.shippingAddress,
+          paymentMethod: cart.paymentMethod,
+          itemsPrice: cart.itemsPrice,
+          shippingPrice: cart.shippingPrice,
+          taxPrice: cart.taxPrice,
+          totalPrice: cart.totalPrice,
+        }).unwrap()
+  
+        console.log(res)  
+        dispatch(destroyCart())
+        navigate(`/orders/${res._id}`)
+        
+        toast.info('Order placed successfully, proceed to view order')
+      } catch (err) {
+        toast.error(err)
+      }
+      console.log('submitted')
+  
   }
 
   return (
