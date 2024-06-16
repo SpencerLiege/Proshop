@@ -7,8 +7,8 @@ import generateToken from "../utils/generateToken.js"
 // @access  Private
 const addOrderItems = asyncHandler(async (req, res)=>{
     
-    const { user, orderItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body
-
+    const { orderItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body
+    
 
     // console.log(orderItems)
     // console.log(req.body)
@@ -21,9 +21,9 @@ const addOrderItems = asyncHandler(async (req, res)=>{
             orderItems: orderItems.map((item)=> ({
                 ...item,
                 product: item._id,
-                
+                    
             })),
-            user,
+            user: req.user_id,
             shippingAddress,
             paymentMethod,
             itemsPrice,
@@ -31,10 +31,10 @@ const addOrderItems = asyncHandler(async (req, res)=>{
             shippingPrice,
             totalPrice,
         })
-        
+            
         const newOrder = await order.save()
         res.status(201).json(newOrder)
-    }
+        }
 
 })
 
