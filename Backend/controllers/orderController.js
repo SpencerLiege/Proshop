@@ -1,6 +1,6 @@
 import asyncHandler from "../middleware/asyncHandler.js"
 import Order from "../models/orderModel.js"
-import generateToken from "../utils/generateToken.js"
+
 
 // @description  Create new order
 // @route  POST /orders
@@ -9,9 +9,6 @@ const addOrderItems = asyncHandler(async (req, res)=>{
     
     const { orderItems, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice } = req.body
     
-
-    // console.log(orderItems)
-    // console.log(req.body)
     if(orderItems && orderItems.length === 0){
         res.status(400)
         throw new Error(' No order available')
@@ -21,9 +18,9 @@ const addOrderItems = asyncHandler(async (req, res)=>{
             orderItems: orderItems.map((item)=> ({
                 ...item,
                 product: item._id,
-                    
+            
             })),
-            user: req.user_id,
+            user: req.user._id,
             shippingAddress,
             paymentMethod,
             itemsPrice,
